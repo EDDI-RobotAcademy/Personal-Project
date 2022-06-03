@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1654239054 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/lcd.c
+	<avr/io.h>
+	<util/delay.h>
+
+1654239732 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/main.c
+	<avr/io.h>
+
+1654239889 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/bldc.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1654240262 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/servo.c
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1654240248 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/phtocell.c
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	"uart.h"
+
+1654236107 /home/jung/Personal-Project/3th/SHJ/Fan_Project/uart.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1654237864 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/spi.c
+	"spi.h"
+
+1654236239 /home/jung/Personal-Project/3th/SHJ/Fan_Project/spi.h
+	<avr/io.h>
+
+1654240214 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/switch.c
+	<avr/io.h>
+	<avr/interrupt.h>
+
+1654236062 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/uart.c
+	"uart.h"
+
+1654240076 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/temp.c
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	"uart.h"
+
