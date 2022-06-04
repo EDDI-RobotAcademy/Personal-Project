@@ -24,19 +24,25 @@ void servo_init (void)
     OCR2A = duty * 0.005 * (1250-1);
 }
 
-void manual_servo(sw)
+void manual_servo(int sw2)
 {
-    servo_init();
-
-    while(1)
+    if(sw2==1)
     {
-        duty+=0.1;
-        OCR2A = duty * 0.005 * (1250-1);
-       _delay_ms(70);
-    }
+      servo_init();
 
-    return 0;
+      while(1)
+      {
+         duty+=0.1;
+         OCR2A = duty * 0.005 * (1250-1);
+        _delay_ms(70);
+      }
+    }
+    else if(sw2==2)
+    {
+      OCR2A =0;
+    }
 }
+
 
 
 

@@ -47,7 +47,7 @@ void manual_BLDC(sw1, manual_flag)
 
 }
 
-void auto_BLDC(temp, auto_flag)
+void auto_BLDC(int temp, int auto_flag)
 {
    if(auto_flag == 1)
   {

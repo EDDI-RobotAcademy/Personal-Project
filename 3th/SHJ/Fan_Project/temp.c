@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "uart.h"
 
-int temp;
+
 
 void temp_init (void)
 {
@@ -35,12 +35,13 @@ void temp_tring (int n, char *buf)
     buf[4] = '\0';
 }
 
-void temp_mode (auto_flag)
+void temp_mode (int auto_flag)
 {
   if(auto_flag==1)
   {
     int read;
     char buf[5];
+    int temp;
 
     uart_init();
     temp_init();
