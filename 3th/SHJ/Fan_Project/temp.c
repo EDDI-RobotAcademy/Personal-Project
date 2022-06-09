@@ -43,15 +43,15 @@ void temp_mode (int auto_flag)
     char buf[5];
     int temp;
 
-    uart_init();
+   // uart_init();
     temp_init();
 
     while(1)
     {
         read = (5.0 * read_temp() * 100.0) / 1024;
         temp_tring(read, buf);
-        uart_string_trans(buf);
-        uart_string_trans("\n");
+        //uart_string_trans(buf);
+        //uart_string_trans("\n");
 
         if (read < 28)
         {
