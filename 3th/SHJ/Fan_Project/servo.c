@@ -32,11 +32,21 @@ void manual_servo(int sw2)
 
       while(1)
       {
-         duty+=0.1;
-         OCR2A = duty * 0.005 * (1250-1);
-        _delay_ms(70);
+        duty += 0.1;
+        OCR2A = duty * 0.005 * (1250-1);
+       _delay_ms(70);
+
+        if(duty > 25.0)
+         {
+          for(duty=25.0; duty>5.0; duty -= 0.1)
+            {
+               OCR1A = duty * 0.005 * (1250-1);
+              _delay_ms(70);
+            }
+         }
       }
     }
+
     else if(sw2==2)
     {
       OCR2A =0;

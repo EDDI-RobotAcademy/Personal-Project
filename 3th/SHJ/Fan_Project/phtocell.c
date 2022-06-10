@@ -41,7 +41,7 @@ int photocell_mode (void)
     int read;
     char buf[5];
 
-    uart_init();
+   // uart_init();
     photocell_init();
 
 
@@ -49,8 +49,8 @@ int photocell_mode (void)
     {
         read = read_photocell();
         photocell_string(read, buf);
-        uart_string_trans(buf);
-        uart_string_trans("\n");
+        //uart_string_trans(buf);
+        //uart_string_trans("\n");
 
         if (read > 600)
         {

@@ -2,7 +2,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-
+#include <avr/interrupt.h>
 // 데이터 핀 연결 포트
 #define PORT_DATA                       PORTD
 // 제어 핀 연결 포트
@@ -27,7 +27,7 @@
 #define COMMAND_BLINK_ON_OFF_BIT        0
 
 // Falling 엣지에서 동작
-void lcd_pulse_enable (void)
+/*void lcd_pulse_enable (void)
 {
     // E를 HIGH로
     PORT_CONTROL |= (1 << E_PIN);
@@ -114,33 +114,63 @@ void lcd_goto_xy (uint8_t row, uint8_t col)
 
     // 커서 이동
     lcd_write_command(command);
-}
+}*/
 
-int lcd_mode (void)
+int lcd_mode (int sw1, int sw2, int manual_flag, int auto_flag)
 {
-    lcd_init();
 
-    lcd_write_string("Hello World!");
-    _delay_ms(1000);
-
-    lcd_clear();
-
-    // 화면에 보이는 영역은 디폴트 값으로 0 ~ 1행
-    // 0 ~ 15열로 설정되어 있다.
-    lcd_goto_xy(0, 0);          // 0행, 0열로 이동
-    lcd_write_data('1');        // 문자 단위 출력
-    lcd_goto_xy(0, 5);
-    lcd_write_data('2');
-    lcd_goto_xy(1, 0);
-    lcd_write_data('3');
-    lcd_goto_xy(1, 5);
-    lcd_write_data('4');
-
-    while(1)
+    if(sw1%2==1 & auto_flag==0 & manual_flag==0)
     {
-        ;
+     uart_string_trans("Manual Mode\n");
     }
 
-    return 0;
+     if(manual_flag == 1)
+    {
+      uart_string_trans("manual flag\n");
+
+    }
+
+
+    else if (sw1%2==0)
+    {
+     uart_string_trans("auto Mode\n");
+    }
+
+    if(auto_flag == 1)
+    {
+      uart_string_trans("auto flag\n");
+    }
+    fan(sw1, sw2, manual_flag);
 }
+
+int fan(int sw1, int sw2, int manual_flag)
+{
+
+    if(manual_flag==1)
+    {
+        if(sw1==1)
+        {
+          uart_string_trans("LOW\n");
+
+        }
+        else if(sw1==2)
+        {
+          uart_string_trans("MIDDLE\n");
+
+        }
+        else if(sw1==3)
+        {
+          uart_string_trans("HIGH\n");
+
+        }
+        else if(sw1==4)
+        {
+          uart_string_trans("STOP\n");
+
+        }
+
+    }
+
+}
+
 
