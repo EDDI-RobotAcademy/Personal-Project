@@ -33,27 +33,29 @@ void manual_servo(int sw2, int manual_flag2)
      {
         while(1)
         {
+          if(sw2==2)
+             break;
+
           if(sw2==1)
           {
             duty += 0.1;
             OCR3A = duty * 0.005 * (1250-1);
             _delay_ms(70);
-
-            if(duty > 25.0)
+          }
+          if(duty > 25.0)
+          {
+            for(duty=25.0; duty>5.0; duty -= 0.1)
             {
-                for(duty=25.0; duty>5.0; duty -= 0.1)
-                {
-                    OCR3A = duty * 0.005 * (1250-1);
-                    _delay_ms(70);
-                }
+                if(sw2==2)
+                    break;
+
+                OCR3A = duty * 0.005 * (1250-1);
+                _delay_ms(70);
+
             }
           }
-
-           if(sw2==2)
-           {
-             OCR3A=0;
-           }
         }
+
       }
       else
       {
