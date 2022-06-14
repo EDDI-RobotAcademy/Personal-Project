@@ -4,13 +4,13 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 // 데이터 핀 연결 포트
-#define PORT_DATA                       PORTD
+#define PORT_DATA                       PORTC
 // 제어 핀 연결 포트
-#define PORT_CONTROL                    PORTB
+#define PORT_CONTROL                    PORTA
 // 데이터 핀의 데이터 방향
-#define DDR_DATA                        DDRD
+#define DDR_DATA                        DDRC
 // 제어 핀의 데이터 방향
-#define DDR_CONTROL                     DDRB
+#define DDR_CONTROL                     DDRA
 // RS 제어 핀의 비트 번호
 #define RS_PIN                          0
 // E 제어 핀의 비트 번호
@@ -116,38 +116,11 @@ void lcd_goto_xy (uint8_t row, uint8_t col)
     lcd_write_command(command);
 }*/
 
-int lcd_mode (int sw1, int sw2, int manual_flag, int auto_flag)
+int fan(int sw1, int sw2, int manual_flag2)
 {
-
-    if(sw1%2==1 & auto_flag==0 & manual_flag==0)
+   if(manual_flag2==1 )
     {
-     uart_string_trans("Manual Mode\n");
-    }
 
-     if(manual_flag == 1)
-    {
-      uart_string_trans("manual flag\n");
-
-    }
-
-
-    else if (sw1%2==0)
-    {
-     uart_string_trans("auto Mode\n");
-    }
-
-    if(auto_flag == 1)
-    {
-      uart_string_trans("auto flag\n");
-    }
-    fan(sw1, sw2, manual_flag);
-}
-
-int fan(int sw1, int sw2, int manual_flag)
-{
-
-    if(manual_flag==1)
-    {
         if(sw1==1)
         {
           uart_string_trans("LOW\n");
@@ -166,11 +139,49 @@ int fan(int sw1, int sw2, int manual_flag)
         else if(sw1==4)
         {
           uart_string_trans("STOP\n");
-
         }
+        if(sw2==1)
+        {
+         uart_string_trans("TURN\n");
+        }
+        else if(sw2==2)
+        {
+         uart_string_trans("TURN STOP\n");
+        }
+     }
+
+}
+
+
+int lcd_mode1 (int manual_flag1, int auto_flag1)
+{
+
+    if(manual_flag1==1)
+    {
+     uart_string_trans("Manual Mode\n");
 
     }
 
+    else if (auto_flag1==1)
+    {
+     uart_string_trans("auto Mode\n");
+
+    }
+}
+
+
+int lcd_mode2(int manual_flag2, int auto_flag2)
+{
+     if(manual_flag2==1)
+     {
+      uart_string_trans("manual flag\n");
+     }
+
+     else if(auto_flag2==1)
+     {
+      uart_string_trans("auto flag\n");
+
+     }
 }
 
 

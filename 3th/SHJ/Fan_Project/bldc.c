@@ -6,7 +6,6 @@
 #include <avr/interrupt.h>
 
 
-
 void BLDC_init(void)
 {
 
@@ -22,50 +21,69 @@ void BLDC_init(void)
     ICR1 = 1250-1;
 }
 
-void manual_BLDC(sw1, manual_flag)
+void manual_BLDC(int sw1, int manual_flag2)
 {
- if(manual_flag == 1)
+ if(manual_flag2 == 1)
   {
    BLDC_init();
-   switch (sw1)
+   if(sw1 ==1)
    {
-    case 1:
-           OCR1A = 0.3 * (1250-1);
-           break;
-    case 2:
-           OCR1A = 0.6 * (1250-1);
-           break;
-    case 3:
-           OCR1A = 0.9 * (1250-1);
-           break;
-    case 4:
-           sw1=0;
-           OCR1A=0;
-           break;
+    OCR1A = 0.3 * (1250-1);
    }
+   else if (sw1 ==2)
+   {
+    OCR1A = 0.6 * (1250-1);
+
+   }
+
+    else if (sw1 ==3)
+    {
+     OCR1A = 0.9 * (1250-1);
+    }
+
+    else if (sw1 ==4)
+    {
+     OCR1A=0;
+    }
+
+   }
+   else
+    {
+     OCR1A=0;
+    }
   }
 
-}
 
-void auto_BLDC(int temp, int auto_flag)
+void auto_BLDC(int temp, int auto_flag2)
 {
-   if(auto_flag == 1)
+   if(auto_flag2 == 1)
   {
    BLDC_init();
-   switch (temp)
+   if(temp ==1)
    {
-    case 1:
-           OCR1A = 0.3 * (1250-1);
-           break;
-    case 2:
-           OCR1A = 0.6 * (1250-1);
-           break;
-    case 3:
-           OCR1A = 0.9 * (1250-1);
-           break;
+    OCR1A = 0.3 * (1250-1);
+   }
+   else if (temp ==2)
+   {
+    OCR1A = 0.6 * (1250-1);
 
    }
+
+    else if (temp ==3)
+    {
+     OCR1A = 0.9 * (1250-1);
+    }
+
+    else if (temp ==4)
+    {
+     OCR1A=0;
+    }
+
+   }
+   else
+    {
+     OCR1A=0;
+    }
   }
-}
 
 

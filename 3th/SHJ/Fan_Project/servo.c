@@ -2,55 +2,65 @@
 
 #define F_CPU       16000000UL
 #include <util/delay.h>
-
+#include <stdbool.h>
 #include <avr/interrupt.h>
 
 
-volatile float duty = 5.0;
+float duty = 5.0;
 
 void servo_init (void)
 {
-    TCCR2A |= (1 << COM1A1);
-    TCCR2A |= (1 << COM1B1);
-    TCCR2B |= (1 << WGM13);
-    TCCR2B |= (1 << WGM12);
-    TCCR2A |= (1 << WGM11);
-    TCCR2B |= (1 << CS12);
+    TCCR3A |= (1 << COM3A1);
+    TCCR3A |= (1 << COM3B1);
+    TCCR3A |= (1 << COM3C1);
+    TCCR3B |= (1 << WGM33);
+    TCCR3B |= (1 << WGM32);
+    TCCR3A |= (1 << WGM31);
+    TCCR3B |= (1 << CS32);
 
 
-    DDRB |= (1 << PORT4);
+    DDRE |= (1 << PORT3);
 
-    ICR1 = 1250-1;
-    OCR2A = duty * 0.005 * (1250-1);
+    ICR3 = 1250-1;
+    OCR3A = duty * 0.005 * (1250-1);
 }
 
-void manual_servo(int sw2)
+void manual_servo(int sw2, int manual_flag2)
 {
-    if(sw2==1)
-    {
-      servo_init();
+   servo_init();
 
-      while(1)
-      {
-        duty += 0.1;
-        OCR2A = duty * 0.005 * (1250-1);
-       _delay_ms(70);
+     if(manual_flag2==1)
+     {
+        while(1)
+        {
+          if(sw2==2)
+             break;
 
-        if(duty > 25.0)
-         {
-          for(duty=25.0; duty>5.0; duty -= 0.1)
+          if(sw2==1)
+          {
+            duty += 0.1;
+            OCR3A = duty * 0.005 * (1250-1);
+            _delay_ms(70);
+          }
+          if(duty > 25.0)
+          {
+            for(duty=25.0; duty>5.0; duty -= 0.1)
             {
-               OCR1A = duty * 0.005 * (1250-1);
-              _delay_ms(70);
-            }
-         }
-      }
-    }
+                if(sw2==2)
+                    break;
 
-    else if(sw2==2)
-    {
-      OCR2A =0;
-    }
+                OCR3A = duty * 0.005 * (1250-1);
+                _delay_ms(70);
+
+            }
+          }
+        }
+
+      }
+      else
+      {
+        OCR3A=0;
+      }
 }
 
 
