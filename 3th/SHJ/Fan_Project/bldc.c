@@ -1,8 +1,7 @@
-#include <avr/io.h>
-
 #define F_CPU       16000000UL
-#include <util/delay.h>
 
+#include <avr/io.h>
+#include <util/delay.h>
 #include <avr/interrupt.h>
 
 
@@ -21,69 +20,56 @@ void BLDC_init(void)
     ICR1 = 1250-1;
 }
 
-void manual_BLDC(int sw1, int manual_flag2)
+void bldc_low (void)
 {
- if(manual_flag2 == 1)
-  {
-   BLDC_init();
-   if(sw1 ==1)
+   uart_string_trans("Low\n");
+   lcd_write_string("Low\n");
+
+   while(1)
    {
     OCR1A = 0.3 * (1250-1);
-   }
-   else if (sw1 ==2)
-   {
-    OCR1A = 0.6 * (1250-1);
-
+    _delay_ms(10);
    }
 
-    else if (sw1 ==3)
-    {
-     OCR1A = 0.9 * (1250-1);
-    }
+}
 
-    else if (sw1 ==4)
-    {
-     OCR1A=0;
-    }
-
-   }
-   else
-    {
-     OCR1A=0;
-    }
-  }
-
-
-void auto_BLDC(int temp, int auto_flag2)
+void bldc_middle (void)
 {
-   if(auto_flag2 == 1)
+  uart_string_trans("Middle\n");
+  lcd_write_string("Middle\n");
+
+  while(1)
   {
-   BLDC_init();
-   if(temp ==1)
-   {
-    OCR1A = 0.3 * (1250-1);
-   }
-   else if (temp ==2)
-   {
-    OCR1A = 0.6 * (1250-1);
-
-   }
-
-    else if (temp ==3)
-    {
-     OCR1A = 0.9 * (1250-1);
-    }
-
-    else if (temp ==4)
-    {
-     OCR1A=0;
-    }
-
-   }
-   else
-    {
-     OCR1A=0;
-    }
+   OCR1A = 0.6 * (1250-1);
   }
+
+}
+
+void bldc_high (void)
+{
+
+ uart_string_trans("High\n");
+ lcd_write_string("High\n");
+
+ while(1)
+ {
+   OCR1A = 0.9 * (1250-1);
+ }
+}
+
+void bldc_stop (void)
+{
+
+ uart_string_trans("Stop\n");
+ lcd_write_string("Stop\n");
+
+ while(1)
+ {
+   OCR1A = 0.0 * (1250-1);
+ }
+
+}
+
+
 
 
