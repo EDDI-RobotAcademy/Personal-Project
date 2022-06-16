@@ -1,8 +1,7 @@
-#include <avr/io.h>
-
 #define F_CPU       16000000UL
+
+#include <avr/io.h>
 #include <util/delay.h>
-#include <stdbool.h>
 #include <avr/interrupt.h>
 
 
@@ -25,44 +24,38 @@ void servo_init (void)
     OCR3A = duty * 0.005 * (1250-1);
 }
 
-void manual_servo(int sw2, int manual_flag2)
+void servo_start (void)
 {
-   servo_init();
+  uart_string_trans("Turn Start\n");
+  lcd_write_string("Turn Start\n");
 
-     if(manual_flag2==1)
-     {
-        while(1)
-        {
-          if(sw2==2)
-             break;
+  while(1)
+  {
+    duty += 0.1;
+    OCR3A = duty * 0.005 * (1250-1);
+    _delay_ms(70);
 
-          if(sw2==1)
-          {
-            duty += 0.1;
-            OCR3A = duty * 0.005 * (1250-1);
-            _delay_ms(70);
-          }
-          if(duty > 25.0)
-          {
-            for(duty=25.0; duty>5.0; duty -= 0.1)
-            {
-                if(sw2==2)
-                    break;
-
-                OCR3A = duty * 0.005 * (1250-1);
-                _delay_ms(70);
-
-            }
-          }
-        }
-
-      }
-      else
+    if(duty > 25.0)
+    {
+      for(duty=25.0; duty>5.0; duty -= 0.1)
       {
-        OCR3A=0;
+        OCR3A = duty * 0.005 * (1250-1);
+        _delay_ms(70);
       }
+   }
+  }
 }
 
+void servo_stop (void)
+{
+  uart_string_trans("Turn Stop\n");
+  lcd_write_string("Turn Stop\n");
+  while(1)
+  {
+   OCR3A = 0;
+  }
+
+}
 
 
 
