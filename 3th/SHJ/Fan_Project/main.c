@@ -15,10 +15,12 @@
 #include <avr/interrupt.h>
 #include <stdbool.h>
 
-volatile int sw1_flag=0;
-volatile int sw2_flag=0;
-int sw1=0;
-int sw2=0;
+#include "uart.h"
+
+volatile int intensity_sw_flag=0;
+volatile int action_sw_flag=0;
+int intensity_sw=0;
+int action_sw=0;
 
 void sw_init (void)
 {
@@ -41,52 +43,58 @@ void sw_init (void)
 int main(void)
 {
     uart_init();
+    lcd_init();
     sw_init();
+    BLDC_init();
+    servo_init();
 
     uart_string_trans("Select Mode\n");
+    lcd_write_string("Select Mode\n");
 
   while(1)
   {
-     if(sw1_flag==true)
+     if(intensity_sw_flag==true)
     {
-        sw1++;
+        intensity_sw++;
 
-        if(sw1>4)
+        if(intensity_sw>4)
         {
-         sw1=0;
+         intensity_sw=0;
         }
 
-        switch_mode(sw1, sw2);
-        sw1_flag=false;
+        switch_mode(intensity_sw, action_sw);
+        intensity_sw_flag=false;
     }
 
-    if(sw2_flag==true)
+    if(action_sw_flag==true)
     {
-        sw2++;
+        action_sw++;
 
-        if(sw2>3)
+        if(action_sw>4)
         {
-         sw2=0;
+         action_sw=0;
         }
 
-      switch_mode(sw1, sw2);
-      sw2_flag=false;
+      switch_mode(intensity_sw, action_sw);
+      action_sw_flag=false;
     }
 
   }
- //_delay_ms(500);
- //   EIFR |= (1 << INTF3);
- //   _delay_ms(500);
- //   EIFR |= (1 << INTF2);
+
  }
 
 ISR(INT2_vect)
 {
-    sw1_flag = true;
+    intensity_sw_flag = true;
+
+     _delay_ms(100);
+     EIFR |= (1 << INTF2);
 }
 
 ISR(INT3_vect)
 {
-    sw2_flag = true;
+    action_sw_flag = true;
+      _delay_ms(100);
+     EIFR |= (1 << INTF3);
 }
 
