@@ -1,7 +1,16 @@
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <stdbool.h>
+
+#define      low        1
+#define      middle     2
+#define      high       3
+#define      stop       4
+
+#define     turn_start     2
+#define     turn_stop      3
 
 #include "uart.h"
 
@@ -14,6 +23,7 @@ unsigned int auto_mode_run=0;
 
 void switch_mode (int intensity_sw, int action_sw)
 {
+
    if(intensity_sw%2==1 && manual_mode_run==0 && auto_mode_run==0)
     {
      manual_mode_select =1;
@@ -30,15 +40,6 @@ void switch_mode (int intensity_sw, int action_sw)
         lcd_write_string("Auto Mode\n");
     }
 
-      if(action_sw==2)
-        {
-           servo_start();
-        }
-
-        if(action_sw==3)
-        {
-           servo_stop();
-        }
 
    if (action_sw==1 && manual_mode_select ==1)
     {
@@ -46,27 +47,21 @@ void switch_mode (int intensity_sw, int action_sw)
         uart_string_trans("Manual Mode run\n");
         lcd_write_string("Manual Mode run\n");
 
-       if(intensity_sw==1)
-        {
-         bldc_low();
-        }
+    while(1)
+    {
+     switch(intensity_sw)
+       {
+         case low : bldc_low(); break;
 
-       if(intensity_sw==2)
-        {
-         bldc_middle();
-        }
+         case middle : bldc_middle(); break;
 
-        if(intensity_sw==3)
-        {
-         bldc_high();
-        }
+         case high : bldc_high(); break;
 
-        if(intensity_sw==4)
-        {
-         bldc_stop();
+         case stop :  bldc_stop(); break;
         }
-
+      }
     }
+
 
     else if(action_sw==1 && auto_mode_select ==1)
     {
@@ -75,6 +70,12 @@ void switch_mode (int intensity_sw, int action_sw)
         lcd_write_string("Auto Mode run\n");
     }
 
+    switch(action_sw == turn_start)
+        {
+          case turn_start : servo_start(); break;
+
+          case turn_stop : servo_stop(); break;
+        }
 
       if(action_sw==4 && (manual_mode_run==1 || auto_mode_run==1))
         {
