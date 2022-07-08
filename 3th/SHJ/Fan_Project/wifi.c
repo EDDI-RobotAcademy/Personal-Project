@@ -18,20 +18,28 @@
 #define w_stop                '8'
 #define w_reset               '9'
 
+#define clockwise               25
+#define counterclockwise        5
+
+#define manual_mode             1
+#define auto_mode               1
+
 
 volatile char wifi_data;
 int w_manual_mode_select=0;
 int w_auto_mode_select=0;
 float w_duty = 5.0;
 
-/*ISR(USART3_RX_vect)
+ISR(USART2_RX_vect)
 {
-    wifi_data = UDR3;
-}*/
+    wifi_data = UDR2;
+}
 
 void wifi_mode(void)
 {
-  wifi_data = uart_recv();
+
+  //wifi_data = uart_recv();
+
   if(wifi_data == w_manual_mode)
     {
      w_manual_mode_select =1;
@@ -71,17 +79,21 @@ void wifi_mode(void)
 
        if(wifi_data==w_servo_start)
          {
+          while(1)
+          {
             w_duty +=0.1;
             servo_counter_clockwise(w_duty);
 
-            if(w_duty>25.0)
+            if(w_duty>clockwise)
             {
-             for(w_duty=25.0; w_duty>5.0; w_duty-=0.1)
+             for(w_duty=clockwise; w_duty>counterclockwise; w_duty-=0.1)
              {
                 servo_clockwise(w_duty);
              }
 
             }
+          }
+
          }
 
          if(wifi_data==w_servo_stop)
@@ -90,12 +102,15 @@ void wifi_mode(void)
          }
 
 
-      if(wifi_data==w_reset && (w_manual_mode_select==1 || w_auto_mode_select==1))
+      if(wifi_data==w_reset && (w_manual_mode_select==manual_mode || w_auto_mode_select==auto_mode))
         {
             w_auto_mode_select=0;
             w_manual_mode_select=0;
             uart_string_trans("Select Mode\n");
             lcd_write_string("Select Mode\n");
         }
+
+
+
 
 }
