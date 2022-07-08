@@ -1,23 +1,23 @@
 #define F_CPU       16000000UL
 
-#define      low_speed        1
-#define      middle_speed     2
-#define      high_speed       3
-#define      stop             4
+#define      LOW_SPEED        1
+#define      MIDDLE_SPEED     2
+#define      HIGH_SPEED       3
+#define      STOP             4
 
-#define     turn_start     2
-#define     turn_stop      3
-#define     reset_mode     4
-#define     reset          0
+#define     TURN_START     2
+#define     TURN_STOP      3
+#define     RESET_MODE     4
+#define     RESET          0
 
-#define     manual          1
-#define     auto            0
+#define     MANUAL          1
+#define     AUTO            0
 
-#define     manual_mode     1
-#define     auto_mode       1
+#define     MANUAL_MODE     1
+#define     AUTO_MODE       1
 
-#define     counterclockwise    5
-#define     clockwise           25
+#define     COUNTERCLOCKWISE    5
+#define     CLOCKWISE           25
 
 
 #include "uart.h"
@@ -54,7 +54,7 @@ void sw_init (void)
 
 void switch_mode (void)
 {
-    if(intensity_sw%2==manual && manual_mode_run==reset && auto_mode_run==reset)
+    if(intensity_sw%2==MANUAL && manual_mode_run==RESET && auto_mode_run==RESET)
     {
      manual_mode_select =1;
      auto_mode_select =0;
@@ -62,7 +62,7 @@ void switch_mode (void)
      lcd_write_string("Manual Mode\n");
     }
 
-    else if (intensity_sw%2==auto && manual_mode_run==reset && auto_mode_run==reset)
+    else if (intensity_sw%2==AUTO && manual_mode_run==RESET && auto_mode_run==RESET)
     {
         auto_mode_select =1;
         manual_mode_select =0;
@@ -70,14 +70,14 @@ void switch_mode (void)
         lcd_write_string("Auto Mode\n");
     }
 
-       if(action_sw==turn_start)
+       if(action_sw==TURN_START)
          {
             duty +=0.1;
             servo_counter_clockwise(duty);
 
-            if(duty>clockwise)
+            if(duty>CLOCKWISE)
             {
-             for(duty=clockwise; duty>counterclockwise; duty-=0.1)
+             for(duty=CLOCKWISE; duty>COUNTERCLOCKWISE; duty-=0.1)
              {
                 servo_clockwise(duty);
              }
@@ -85,42 +85,42 @@ void switch_mode (void)
             }
          }
 
-         if(action_sw==turn_stop)
+         if(action_sw==TURN_STOP)
          {
           servo_stop();
          }
 
 
 
-   if (manual_mode_select ==manual_mode)
+   if (manual_mode_select ==MANUAL_MODE)
     {
         manual_mode_run =1;
         uart_string_trans("Manual Mode run\n");
         lcd_write_string("Manual Mode run\n");
 
-       if(intensity_sw==low_speed)
+       if(intensity_sw==LOW_SPEED)
        {
            bldc_low();
        }
 
-        if(intensity_sw==middle_speed)
+        if(intensity_sw==MIDDLE_SPEED)
         {
            bldc_middle();
          }
 
-          if(intensity_sw==high_speed)
+          if(intensity_sw==HIGH_SPEED)
           {
             bldc_high();
           }
 
-         if(intensity_sw==stop)
+         if(intensity_sw==STOP)
          {
            bldc_stop();
          }
 
      }
 
-    else if(auto_mode_select ==auto_mode)
+    else if(auto_mode_select ==AUTO_MODE)
     {
         auto_mode_run =1;
         uart_string_trans("Auto Mode run\n");
@@ -130,7 +130,7 @@ void switch_mode (void)
     }
 
 
-      if(action_sw==reset_mode && (manual_mode_run==manual_mode || auto_mode_run==auto_mode))
+      if(action_sw==RESET_MODE && (manual_mode_run==MANUAL_MODE || auto_mode_run==AUTO_MODE))
         {
             auto_mode_run=0;
             auto_mode_select=0;
@@ -143,10 +143,6 @@ void switch_mode (void)
         }
 
 
-         if(action_sw==turn_stop)
-         {
-          servo_stop();
-         }
 
 }
 
