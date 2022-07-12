@@ -6,7 +6,7 @@
         Manual_Mode
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
     <style>
         h1{
             
@@ -15,25 +15,7 @@
             text-align: center;
             font-size: 60px;    
             font-family: 'Times New Roman',Times,serif;    
-        }
-        b2{
-            background-color: rgb(200,200,200);
-            font-size: 40px; 
-            margin: 60px;
-        }
-        button{
-           
-            background-color: rgb(200,200,200);
-            font-size: 40px;  
-            margin: 60px;
-        }
-        button:hover{
-                background-color: white;
-        }
-        button:active{
-                background-color: rgb(183, 138, 224);
-
-        }
+         }
      
     </style>   
 </head>
@@ -42,17 +24,17 @@
 <body bgcolor="#708090">
     <h1>Manual Mode</h1>
     <hr>
-    <b2>Fan Speed:</b2>
+    <b1>Fan Speed:</b1>
     <button type="button" onClick="location.href='http://localhost:5000/Bldc_Stop';">Stop</button>
     <button type="button" onClick="location.href='http://localhost:5000/Bldc_Low';">Low</button>
-    <button type="button" onClick="location.href='http://localhost:5000/Bldc_Middle';">Middle</button> 
+    <button type="button" onClick="location.href='http://localhost:5000/Bldc_Midde';">Midde</button> 
     <button type="button" onClick="location.href='http://localhost:5000/Bldc_High';">High</button>
     <br>
-    <b2>Fan Turn:</b2>
+    <b1>Fan Turn:</b1>
     <button type="button" onClick="location.href='http://localhost:5000/Servo_Start';">Turn Start</button>
     <button type="button" onClick="location.href='http://localhost:5000/Servo_Stop';">Turn Stop</button>
     <br>
-    <button type="button" onClick="location.href='http://localhost:5000/','http://localhost:5000/Back';" >Back</button>
+    <button type="button" onClick="location.href='http://localhost:5000/Back';">Back</button>
 
 </body>
 </html>
