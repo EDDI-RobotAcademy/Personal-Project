@@ -1,8 +1,6 @@
 #define F_CPU                           16000000UL
 
-#include <avr/io.h>
-#include <util/delay.h>
-#include <avr/interrupt.h>
+#include "lcd.h"
 
 #define PORT_DATA                       PORTC
 
@@ -37,12 +35,12 @@ void lcd_pulse_enable (void)
     _delay_ms(1);
 }
 
-void lcd_write_data (uint8_t data)
+void lcd_write_data (uint8_t lcd_data)
 {
 
     PORT_CONTROL |= (1 << RS_PIN);
 
-    PORT_DATA = data;
+    PORT_DATA = lcd_data;
 
     lcd_pulse_enable();
 }
@@ -80,15 +78,15 @@ void lcd_init (void)
     lcd_write_command(0x06);
 }
 
-void lcd_write_string (char *string)
+void lcd_write_string (char *lcd_string)
 {
     uint8_t i;
 
     lcd_clear();
 
-    for (i = 0; string[i]; i++)
+    for (i = 0; lcd_string[i]; i++)
     {
-        lcd_write_data(string[i]);
+        lcd_write_data(lcd_string[i]);
     }
 }
 

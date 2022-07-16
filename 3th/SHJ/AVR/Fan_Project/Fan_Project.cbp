@@ -37,28 +37,47 @@
 		<Unit filename="bldc.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="bldc.h" />
+		<Unit filename="bluetooht.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bluetooht.h" />
+		<Unit filename="bluetooth_uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bluetooth_uart.h" />
 		<Unit filename="lcd.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="lcd.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="phtocell.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="phtocell.h" />
 		<Unit filename="servo.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="servo.h" />
 		<Unit filename="switch.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="switch.h" />
 		<Unit filename="temp.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="temp.h" />
 		<Unit filename="uart.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="uart.h" />
+		<Unit filename="wifi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wifi.h" />
+		<Unit filename="wifi_init.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -35,7 +35,7 @@ unsigned char uart_recv (void)
     return UDR0;
 }
 
-void uart_trans (char data)
+void uart_trans (char uart_data)
 {
 
     while (!(UCSR0A & (1 << UDRE0)))
@@ -44,15 +44,15 @@ void uart_trans (char data)
     }
 
 
-    UDR0 = data;
+    UDR0 = uart_data;
 }
 
-void uart_string_trans (char *str)
+void uart_string_trans (char *uart_str)
 {
-    while (*str != '\0')
+    while (*uart_str != '\0')
     {
-        uart_trans(*str);
-        str++;
+        uart_trans(*uart_str);
+        uart_str++;
     }
 }
 

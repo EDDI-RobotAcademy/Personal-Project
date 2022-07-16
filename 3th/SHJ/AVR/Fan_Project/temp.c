@@ -6,6 +6,7 @@
 #define MIDDLE_MAX   36
 #define HIGH_MIN     36
 #define STOP_MIN     32
+#define CELSIUS      0.488 //5*100/1024
 
 
 #include "lcd.h"
@@ -57,7 +58,7 @@ void temperature_sensor (void)
     char buf[5];
 
 
-       read = (5.0 * read_temp() * 100.0) / 1024;
+       read = read_temp() * CELSIUS;
         temp_tring(read, buf);
         uart_string_trans(buf);
         uart_string_trans("\n");
