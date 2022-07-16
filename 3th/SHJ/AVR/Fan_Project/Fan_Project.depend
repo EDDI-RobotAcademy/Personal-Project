@@ -1,0 +1,271 @@
+# depslib dependency file v1.0
+1655502049 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/lcd.c
+	"lcd.h"
+
+1657541822 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/main.c
+	<avr/io.h>
+	<util/delay.h>
+	"uart.h"
+	"bluetooth_uart.h"
+	"lcd.h"
+	"switch.h"
+	"bldc.h"
+	"servo.h"
+	"temp.h"
+	"phtocell.h"
+	"bluetooht.h"
+	"wifi.h"
+
+1657428892 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/bldc.c
+	"bldc.h"
+	"lcd.h"
+	"uart.h"
+
+1657378575 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/servo.c
+	"servo.h"
+	"lcd.h"
+	"uart.h"
+
+1657262654 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/phtocell.c
+	"phtocell.h"
+	"lcd.h"
+	"uart.h"
+
+1655501946 /home/jung/Personal-Project/3th/SHJ/Fan_Project/uart.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1654237864 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/spi.c
+	"spi.h"
+
+1654236239 /home/jung/Personal-Project/3th/SHJ/Fan_Project/spi.h
+	<avr/io.h>
+
+1657453920 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/switch.c
+	"uart.h"
+	"lcd.h"
+	"switch.h"
+	"bldc.h"
+	"servo.h"
+	"temp.h"
+	"phtocell.h"
+	"bluetooht.h"
+	"wifi.h"
+
+1655502082 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/uart.c
+	"uart.h"
+
+1657262626 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/temp.c
+	"lcd.h"
+	"uart.h"
+	"temp.h"
+	"bldc.h"
+
+1657384398 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/bluetooht.c
+	"bluetooth_uart.h"
+	"uart.h"
+	"bluetooht.h"
+	"bldc.h"
+	"servo.h"
+	"switch.h"
+
+1655499444 /home/jung/Personal-Project/3th/SHJ/Fan_Project/bldc.h
+	<avr/io.h>
+
+1656173528 /home/jung/Personal-Project/3th/SHJ/Fan_Project/bluetooht.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1655499622 /home/jung/Personal-Project/3th/SHJ/Fan_Project/servo.h
+	<avr/io.h>
+
+1655499989 /home/jung/Personal-Project/3th/SHJ/Fan_Project/temp.h
+	<avr/io.h>
+	<util/delay.h>
+
+1655501942 /home/jung/Personal-Project/3th/SHJ/Fan_Project/lcd.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1655500522 /home/jung/Personal-Project/3th/SHJ/Fan_Project/phtocell.h
+	<avr/io.h>
+	<util/delay.h>
+
+1657382861 /home/jung/Personal-Project/3th/SHJ/Fan_Project/switch.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+	<stdbool.h>
+
+1655503038 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/bluetooth_uart.c
+	"bluetooth_uart.h"
+
+1655503100 /home/jung/Personal-Project/3th/SHJ/Fan_Project/bluetooth_uart.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1656173517 /home/jung/Personal-Project/3th/SHJ/Fan_Project/wifi.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1657384357 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/wifi.c
+	"wifi.h"
+	"uart.h"
+	"bluetooht.h"
+	"bldc.h"
+	"servo.h"
+	"switch.h"
+
+1657611087 source:/home/jung/Personal-Project/3th/SHJ/Fan_Project/wifi_init.c
+	"wifi_init.h"
+
+1657611061 /home/jung/Personal-Project/3th/SHJ/Fan_Project/wifi_init.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdbool.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<avr/interrupt.h>
+
+1657428892 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bldc.c
+	"bldc.h"
+	"lcd.h"
+	"uart.h"
+
+1655499444 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bldc.h
+	<avr/io.h>
+
+1655501942 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/lcd.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1655501946 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/uart.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1657384398 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bluetooht.c
+	"bluetooth_uart.h"
+	"uart.h"
+	"bluetooht.h"
+	"bldc.h"
+	"servo.h"
+	"switch.h"
+
+1655503100 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bluetooth_uart.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1656173528 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bluetooht.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1655499622 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/servo.h
+	<avr/io.h>
+
+1657382861 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/switch.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+	<stdbool.h>
+
+1655503038 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bluetooth_uart.c
+	"bluetooth_uart.h"
+
+1655502049 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/lcd.c
+	"lcd.h"
+
+1657262654 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/phtocell.c
+	"phtocell.h"
+	"lcd.h"
+	"uart.h"
+
+1655500522 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/phtocell.h
+	<avr/io.h>
+	<util/delay.h>
+
+1657378575 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/servo.c
+	"servo.h"
+	"lcd.h"
+	"uart.h"
+
+1657615285 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/switch.c
+	"uart.h"
+	"lcd.h"
+	"switch.h"
+	"bldc.h"
+	"servo.h"
+	"temp.h"
+	"phtocell.h"
+	"bluetooht.h"
+	"wifi.h"
+
+1655499989 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/temp.h
+	<avr/io.h>
+	<util/delay.h>
+
+1656173517 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi.h
+	<avr/io.h>
+	<util/delay.h>
+	<avr/interrupt.h>
+
+1657690634 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/temp.c
+	"lcd.h"
+	"uart.h"
+	"temp.h"
+	"bldc.h"
+
+1655502082 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/uart.c
+	"uart.h"
+
+1657615224 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi.c
+	"wifi.h"
+	"uart.h"
+	"bluetooht.h"
+	"bldc.h"
+	"servo.h"
+	"switch.h"
+
+1657611087 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi_init.c
+	"wifi_init.h"
+
+1657611061 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi_init.h
+	<avr/io.h>
+	<util/delay.h>
+	<stdbool.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<avr/interrupt.h>
+
+1657615160 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/main.c
+	<avr/io.h>
+	<util/delay.h>
+	"uart.h"
+	"bluetooth_uart.h"
+	"lcd.h"
+	"switch.h"
+	"bldc.h"
+	"servo.h"
+	"temp.h"
+	"phtocell.h"
+	"bluetooht.h"
+	"wifi.h"
+
