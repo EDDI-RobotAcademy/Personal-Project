@@ -24,10 +24,10 @@
 #include "wifi.h"
 
 
+
 int main(void)
 {
     uart_init();
-    b_uart_init();
     lcd_init();
     sw_init();
     BLDC_init();
@@ -40,12 +40,12 @@ int main(void)
     lcd_write_string("Select Mode\n");
 
     while(1)
-   {
-     switch_mode();
-     wifi_mode();
-     bluetooth_mode();
-    _delay_ms(70);
-   }
+    {
+      //switch_mode();
+      wifi_mode();
+     //bluetooth_mode();
+     _delay_ms(70);
+    }
 
 
 
