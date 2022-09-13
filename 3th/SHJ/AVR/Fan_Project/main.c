@@ -41,9 +41,9 @@ int main(void)
 
     while(1)
     {
-      //switch_mode();
+      switch_mode();
       wifi_mode();
-     //bluetooth_mode();
+     bluetooth_mode();
      _delay_ms(70);
     }
 
