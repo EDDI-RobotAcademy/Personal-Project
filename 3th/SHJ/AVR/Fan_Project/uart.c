@@ -11,17 +11,14 @@ void uart_init (void)
 
     UCSR0A |= (1 << U2X0);
 
-
     UBRR0H = 0x00;
     UBRR0L = 207;
 
-
-    UCSR0C |= (1 << UCSZ00);
-    UCSR0C |= (1 << UCSZ01);
-
+    UCSR0C |= 0x6;
 
     UCSR0B |= (1 << RXEN0);
     UCSR0B |= (1 << TXEN0);
+
 
 }
 
@@ -33,7 +30,9 @@ unsigned char uart_recv (void)
     }
 
     return UDR0;
+
 }
+
 
 void uart_trans (char uart_data)
 {
@@ -42,7 +41,6 @@ void uart_trans (char uart_data)
     {
         ;
     }
-
 
     UDR0 = uart_data;
 }
