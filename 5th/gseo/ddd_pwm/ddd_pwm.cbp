@@ -47,6 +47,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="usart_printf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="usart_printf.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
