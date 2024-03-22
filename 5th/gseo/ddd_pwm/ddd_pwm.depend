@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1708708817 source:/home/gseo/eddi-robot-academy/Docker-For-EM-Course/emlv1/workspace/emlv1_5th_gseo/5th/gseo/ddd_pwm/main.c
+	<avr/io.h>
+	<avr/sfr_defs.h>
+	<util/delay.h>
+	<stdio.h>
+	"usart_printf.h"
+
+1708709424 /home/gseo/eddi-robot-academy/Docker-For-EM-Course/emlv1/workspace/emlv1_5th_gseo/5th/gseo/ddd_pwm/usart_printf.h
+	<stdio.h>
+
+1708709377 source:/home/gseo/eddi-robot-academy/Docker-For-EM-Course/emlv1/workspace/emlv1_5th_gseo/5th/gseo/ddd_pwm/usart_printf.c
+	<avr/io.h>
+	<avr/sfr_defs.h>
+	<stdio.h>
+

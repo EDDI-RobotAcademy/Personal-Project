@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# exclude vscode
+.vscode
+
+# Codeblocks
+*.lss
+.idea
+
+# ATmega328p Debug files
+/5th/gseo/ddd_pwm/bin/Debug/*
+/bin/Debug/
+/obj/
