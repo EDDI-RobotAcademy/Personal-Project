@@ -60,3 +60,5 @@ dkms.conf
 
 # ATmega328p Debug files
 /5th/gseo/ddd_pwm/bin/Debug/*
+/bin/Debug/
+/obj/
