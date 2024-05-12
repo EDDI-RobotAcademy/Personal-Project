@@ -150,15 +150,14 @@
 	<util/delay.h>
 	<avr/interrupt.h>
 
-1655501946 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/uart.h
+1658140803 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/uart.h
 	<avr/io.h>
 	<util/delay.h>
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1657384398 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bluetooht.c
-	"bluetooth_uart.h"
+1661002837 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/bluetooht.c
 	"uart.h"
 	"bluetooht.h"
 	"bldc.h"
@@ -221,10 +220,11 @@
 	<avr/io.h>
 	<util/delay.h>
 
-1656173517 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi.h
+1658037686 /home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi.h
 	<avr/io.h>
 	<util/delay.h>
 	<avr/interrupt.h>
+	<stdio.h>
 
 1657690634 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/temp.c
 	"lcd.h"
@@ -232,10 +232,10 @@
 	"temp.h"
 	"bldc.h"
 
-1655502082 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/uart.c
+1658140791 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/uart.c
 	"uart.h"
 
-1657615224 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi.c
+1662197023 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/wifi.c
 	"wifi.h"
 	"uart.h"
 	"bluetooht.h"
@@ -255,7 +255,7 @@
 	<stdlib.h>
 	<avr/interrupt.h>
 
-1657615160 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/main.c
+1662293939 source:/home/jung/Personal-Project/3th/SHJ/AVR/Fan_Project/main.c
 	<avr/io.h>
 	<util/delay.h>
 	"uart.h"

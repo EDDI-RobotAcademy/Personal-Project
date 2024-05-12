@@ -42,10 +42,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bluetooht.h" />
-		<Unit filename="bluetooth_uart.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="bluetooth_uart.h" />
 		<Unit filename="lcd.c">
 			<Option compilerVar="CC" />
 		</Unit>
