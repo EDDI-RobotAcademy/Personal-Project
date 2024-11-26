@@ -1,6 +1,5 @@
 /*
  */
-
 #include <avr/io.h>
 #include <avr/sfr_defs.h>
 #include <avr/interrupt.h>
@@ -21,41 +20,15 @@
 #include "domain/pin/service/pin_service_table.h"
 
 #include "domain/pwm/form/pwm_control_form.h"
+#include "domain/pwm/service/pwm_service_table.h"
 
 #define F_CPU       16000000L
 
-void LED_Toggle(void)
-{
-    PORTB = 0x00;
-    _delay_ms(500);
-    PORTB = 0x20;
-    _delay_ms(500);
-}
+#define USE_SG90_SERVO_MOTOR    0
+#define USE_DC_MOTOR            1
 
-void pwm_init(void)
-{
-    
-}
 
-volatile int x = 0;
-ISR(TIMER0_OVF_vect)
-{
-    x++;
-    if(x<=999){
-        set_led_control_form(LED_STATUS_ON);
-		led_service_call_table[LED_ON](
-            convert_led_control_data(led_control_form));
-    }
-    else if(x>999 && x<2000)
-    {
-        set_led_control_form(LED_STATUS_OFF);
-		led_service_call_table[LED_OFF](
-            convert_led_control_data(led_control_form));
-    }
-    else{
-        x=0;
-    }
-}
+#define DELAY					2000
 
 int main(void)
 {
@@ -65,54 +38,110 @@ int main(void)
     stdout = &uart_output;
 	_delay_ms(10);
 
-    printf("The PWM based on domain driven design\r\n");
-    printf("Chipset : ATmega328p\r\n");
-    //  [DDD-PWM-0]
-    //  TODO : Developer can choose the pin to control.
-    //  [DDD-PWM-7]
-    //  TODO : Developer can choose the pin direction.
-    set_pin_control_form(PIN_PB5, PIN_OUTPUT_MODE);
-    pin_service_call_table[PIN_DIRECTION] (
-        convert_pin_control_data(pin_control_form) );
-#if 0 
-    TCCR0A = 0x00; // 노멀모드 초기화 
-    TCCR0B = 0x03; //분주비 64
-    TCNT0 = 250;
-    TIMSK0 = 0x01; // overflow 인터럽트 발생가능
-    sei(); // 인터럽트 사용
-#endif
-    // [DDD-PWM-1]
-    // TODO : Developers can set the PWM Mode.
-    // [DDD-PWM-9]
-    // TODO : Timer/Counter0,1,2 Select
+    printf("\n Eddi Robot Academy's Embedded Master LV.1\n1. Project Name    : DDD-PWM\r\n");
+    printf("2. Chipset         : ATmega328p\r\n");
+    printf("3. Peripheral      : PWM\r\n");
+    printf("4. Software Design : Domain-Driven Design.\r\n\n");
 
-    set_pin_control_form(PIN_PD6, PIN_OUTPUT_MODE);
+/* 240724 SG90 SERVO MOTOR */
+#if USE_SG90_SERVO_MOTOR
+    // [DDD-PWM-9]
+    // TODO : control form에 50Hz PWM 파형을 생성하기 위한
+    //        compare output mode, wave generation mode, precale 정보를 전달한다.
+    set_pwm_control_form(PWM_TIMER_COUNTER_1, NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, TC1_PRESCALE_8);
+
+    // [DDD-PWM-8]
+    // TODO : 개발자는 SG90 서보모터를 동작시키기 위해
+    //        PWM를 설정해야 하는데, 이 때 PWM Setting을 Service에 요청하는 코드를 작성한다.
+    pwm_service_call_table[PWM_SETTING_SG90_SERVO_MOTOR](
+        convert_pwm_control_data(pwm_control_form)
+    );
+
+    set_pin_control_form(PIN_PB1, PIN_OUTPUT_MODE);
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form)
     );
-    set_pwm_control_form(COMP_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
-    // pwm_service_call_table[COM_OUTPUT_MODE](
-    //     convert_pwm_control_data(pwm_control_form) );
-    // pwm_service_call_table[WAVE_GEN_MODE](
-    //     convert_pwm_control_data(pwm_control_form) );
-    // pwm_service_call_table[PRESCALE](
-    //     convert_pwm_control_data(pwm_control_form) );
+#endif
 
+/* 240724 DC MOTOR */
+#if USE_DC_MOTOR
+//  [DDD-PWM-9]
+//  TODO : control form에 250KHz PWM 파형을 생성하기 위한
+//         compare output mode, wave generation mode, precale 정보를 전달한다.
+    set_pwm_control_form(PWM_TIMER_COUNTER_2, OCxB ,NON_INVERTING_MODE, TC2_FAST_PWM_TOP_0xFF, TC2_PRESCALE_64);
+
+// [DDD-PWM-9]
+// TODO : 개발자는 DC모터를 동작시키기 위해
+//        PWM를 설정해야 하는데, 이 때 PWM Setting 정보들을 Service에 요청하는 코드를 작성한다.
+    pwm_service_call_table[PWM_SETTING_DC_MOTOR](
+        convert_pwm_control_data(pwm_control_form)
+    );
+
+    set_pin_control_form(PIN_PD3, PIN_OUTPUT_MODE);
+    pin_service_call_table[PIN_DIRECTION] (
+        convert_pin_control_data(pin_control_form)
+    );
+
+    set_pin_control_form(PIN_PD4, PIN_OUTPUT_MODE);
+    pin_service_call_table[PIN_DIRECTION] (
+        convert_pin_control_data(pin_control_form)
+    );
+
+    set_pin_control_form(PIN_PD5, PIN_OUTPUT_MODE);
+    pin_service_call_table[PIN_DIRECTION] (
+        convert_pin_control_data(pin_control_form)
+    );
+#endif
+
+#if USE_SG90_SERVO_MOTOR
     for(;;)
     {
-        // [DDD-PWM-8]
-        //  TODO : Developer can change status of LED.
+        if(USE_SG90_SERVO_MOTOR==1){
+            pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CW](
+                convert_pwm_control_data(pwm_control_form)
+            );
+            _delay_ms(1000);
 
-		// set_led_control_form(LED_STATUS_OFF);
-		// led_service_call_table[LED_OFF](
-        //     convert_led_control_data(led_control_form));
-        // _delay_ms(500);
-        // set_led_control_form(LED_STATUS_ON);
-		// led_service_call_table[LED_ON](
-        //     convert_led_control_data(led_control_form));
-        // _delay_ms(500);
+            pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CCW](
+                convert_pwm_control_data(pwm_control_form)
+            );
+            _delay_ms(1000);
+        }
+
+        if(USE_DC_MOTOR==1){
+            OCR1A = 400;
+            _delay_ms(1000);
+        }
+	}
+#endif
+// ********************************************************************
+
+#if USE_DC_MOTOR
+    while(1)
+	{
+        pwm_service_call_table[STOP_ROTATING_DC_MOTOR](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        _delay_ms(DELAY);
+
+        pwm_service_call_table[ROTATE_DC_MOTOR_CW](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        _delay_ms(DELAY);
+
+		pwm_service_call_table[STOP_ROTATING_DC_MOTOR](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        _delay_ms(DELAY);
+
+        pwm_service_call_table[ROTATE_DC_MOTOR_CCW](
+            convert_pwm_control_data(pwm_control_form)
+        );
+		_delay_ms(DELAY);
 
 	}
+#endif
+	return 0;
 
-    return 0;
+
 }
